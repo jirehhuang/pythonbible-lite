@@ -67,60 +67,21 @@ class Bible:
         start_verse_id: int,
         end_verse_id: int | None = None,
     ) -> str:
-        if not is_valid_verse_id(start_verse_id):
-            msg = f"start verse id ({start_verse_id}) is not a valid verse id."
-            raise InvalidVerseError(msg)
-
-        if end_verse_id and not is_valid_verse_id(end_verse_id):
-            msg = f"end verse id ({end_verse_id}) is not a valid verse id."
-            raise InvalidVerseError(msg)
-
-        end_verse_id = end_verse_id or start_verse_id
-        start_index, end_index = self._get_start_and_end_indices(
-            start_verse_id,
-            end_verse_id,
-        )
-
-        return _clean(self.scripture_content[start_index:end_index], self.is_html)
+        return ""
 
     def _get_start_and_end_indices(
         self: Bible,
         start_verse_id: int,
         end_verse_id: int,
     ) -> tuple[int, int]:
-        start_index = self.verse_start_indices.get(start_verse_id)
-
-        if start_index is None:
-            raise VersionMissingVerseError(self.version.value, start_verse_id)
-
-        end_index = self.verse_end_indices.get(end_verse_id)
-
-        if end_index is None:
-            raise VersionMissingVerseError(self.version.value, end_verse_id)
-
-        return start_index, end_index
+        return 0, 0
 
 
 @lru_cache()
 def _clean(scripture_content: str, is_html: bool) -> str:
-    cleaned_content: str = scripture_content.strip()
-    return clean_html(cleaned_content) if is_html else cleaned_content
+    return ""
 
 
 @lru_cache()
 def clean_html(scripture_content: str) -> str:
-    if not scripture_content or scripture_content in {"</p><p>", "<p></p>"}:
-        return ""
-
-    cleaned_content: str = scripture_content
-
-    if cleaned_content.endswith("<p>"):
-        cleaned_content = cleaned_content[:-3]
-
-    if not cleaned_content.startswith("<p>"):
-        cleaned_content = f"<p>{cleaned_content}"
-
-    if not cleaned_content.endswith("</p>"):
-        cleaned_content = f"{cleaned_content}</p>"
-
-    return "" if cleaned_content == "<p></p>" else cleaned_content
+    return ""
