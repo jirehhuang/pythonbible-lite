@@ -6,16 +6,19 @@ import pytest
 
 import pythonbible as bible
 import pythonbible.bible.errors
+from tests.conftest import BIBLE_DEACTIVATED_MSG
 
 ASV_HTML = bible.get_bible(bible.Version.AMERICAN_STANDARD, "html")
 ASV_HTML_READERS = bible.get_bible(bible.Version.AMERICAN_STANDARD, "html_readers")
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_scripture_end_verse_invalid() -> None:
     with pytest.raises(bible.InvalidVerseError):
         ASV_HTML.get_scripture(1001001, 99999999)
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_scripture_cross_chapter() -> None:
     scripture = ASV_HTML.get_scripture(1001031, 1002001)
     assert scripture == (
@@ -26,6 +29,7 @@ def test_get_scripture_cross_chapter() -> None:
     )
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_scripture_cross_book() -> None:
     scripture = ASV_HTML.get_scripture(64001014, 65001001)
     assert scripture == (
@@ -42,16 +46,19 @@ def test_get_scripture_missing_verse_in_version() -> None:
     assert not scripture
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_scripture_missing_book_in_version_start_index() -> None:
     with pytest.raises(pythonbible.bible.errors.VersionMissingVerseError):
         ASV_HTML_READERS.get_scripture(67001001, 67001001)
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_scripture_missing_book_in_version_end_index() -> None:
     with pytest.raises(pythonbible.bible.errors.VersionMissingVerseError):
         ASV_HTML_READERS.get_scripture(66001001, 67001001)
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_bible_bad_type() -> None:
     # Given a good version and a bad type
     # When getting the Bible
@@ -60,6 +67,7 @@ def test_get_bible_bad_type() -> None:
         bible.get_bible(bible.Version.AMERICAN_STANDARD, "bad_type")
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_add_bible() -> None:
     # Given a Bible instance
     version = bible.Version.MESSAGE
@@ -82,6 +90,7 @@ def test_add_bible() -> None:
     assert bible.get_bible(version, bible_type) == bible_instance
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_long_title_init_version() -> None:
     # Given a version that has not yet been initialized and a valid book
     version = bible.Version.WEYMOUTH_NT
@@ -95,6 +104,7 @@ def test_get_long_title_init_version() -> None:
     assert long_title == book.title
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_bible_import_failure_raises_missing_verse_file_error() -> None:
     # Choose a version that has files on disk but ensure it's not cached in BIBLES
     version = bible.Version.KING_JAMES
@@ -109,6 +119,7 @@ def test_get_bible_import_failure_raises_missing_verse_file_error() -> None:
         bible.get_bible(version, "this_bible_type_does_not_exist")
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_bible_import_module_raises_missing_verse_file() -> None:
     version = bible.Version.KING_JAMES
     # Ensure no cached entry so get_bible will attempt to import
@@ -120,6 +131,7 @@ def test_get_bible_import_module_raises_missing_verse_file() -> None:
         bible.get_bible(version, "any_type")
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_bible_import_module_raises_module_not_found_in_module(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -137,6 +149,7 @@ def test_get_bible_import_module_raises_module_not_found_in_module(
         bible.get_bible(version, "any_type")
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_bible_with_missing_version_files_raises_missing_verse_file_error() -> None:
     # Create a minimal version-like object with a value for which no folder exists
     class DummyVersion:

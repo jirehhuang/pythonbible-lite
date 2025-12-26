@@ -9,7 +9,10 @@ examples need to be updated to reflect the current state of the library.
 
 from __future__ import annotations
 
+import pytest
+
 import pythonbible as bible
+from tests.conftest import BIBLE_DEACTIVATED_MSG
 
 
 def test_finding_scripture_references_in_text() -> None:
@@ -120,6 +123,7 @@ def test_formatting_scripture_references() -> None:
     assert formatted_references == "Isaiah 55:13;Philippians 4:4-8"
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_formatting_scripture_text() -> None:
     formatted_text = bible.get_verse_text(1001001)
     assert formatted_text == "In the beginning God created the heavens and the earth."

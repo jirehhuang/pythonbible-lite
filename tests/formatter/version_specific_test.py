@@ -3,8 +3,10 @@ from __future__ import annotations
 import pytest
 
 import pythonbible as bible
+from tests.conftest import BIBLE_DEACTIVATED_MSG
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 @pytest.mark.parametrize(
     ("reference_string", "expected_references_by_version"),
     [

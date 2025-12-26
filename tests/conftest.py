@@ -4,6 +4,8 @@ import pytest
 
 import pythonbible as bible
 
+BIBLE_DEACTIVATED_MSG = "The .bible module has been deactivated."
+
 
 @pytest.fixture
 def verse_id() -> int:

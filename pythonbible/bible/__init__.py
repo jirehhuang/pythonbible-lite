@@ -4,7 +4,9 @@ from importlib import import_module
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from pythonbible.errors import MissingVerseFileError
+from pythonbible.bible.bible import Bible
+from pythonbible.books import Book
+from pythonbible.versions import Version
 
 if TYPE_CHECKING:
     from pythonbible.bible.bible import Bible
@@ -26,27 +28,16 @@ def get_bible(version: Version, bible_type: str) -> Bible:
     :return: The Bible for the given version and type
     :rtype: Bible
     """
-    version_bibles = BIBLES.get(version, {})
-
-    if not version_bibles:
-        # Lazy-loading of Bible files to conserve memory
-        if not _do_version_files_exist(version):
-            raise MissingVerseFileError
-
-        try:
-            version_module = import_module(
-                f".{version.value.lower()}.{bible_type.lower()}_bible",
-                "pythonbible.bible.versions",
-            )
-        except ModuleNotFoundError as e:
-            raise MissingVerseFileError from e
-
-        return version_module.bible
-
-    if version_bible := version_bibles.get(bible_type):
-        return version_bible
-
-    raise MissingVerseFileError
+    return Bible(
+        version=Version.AMERICAN_STANDARD,
+        scripture_content="",
+        verse_start_indices={0: 0},
+        verse_end_indices={0: 0},
+        max_verses={Book.GENESIS: {0: 0}},
+        short_titles={},
+        long_titles={},
+        is_html=False,
+    )
 
 
 def add_bible(version: Version, bible_type: str, version_bible: Bible) -> None:
@@ -63,12 +54,8 @@ def add_bible(version: Version, bible_type: str, version_bible: Bible) -> None:
     :param version_bible: The Bible to add
     :type version_bible: Bible
     """
-    if version not in BIBLES:
-        BIBLES[version] = {}
-
-    BIBLES[version][bible_type] = version_bible
+    return
 
 
 def _do_version_files_exist(version: Version) -> bool:
-    version_folder = CURRENT_FOLDER / "versions" / version.value.lower()
-    return version_folder.exists()
+    return False
