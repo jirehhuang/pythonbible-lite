@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import pytest
 from typing import NoReturn
 
 import pythonbible as bible
 import pythonbible.bible as bible_module
 from pythonbible import formatter
+from tests.conftest import BIBLE_DEACTIVATED_MSG
 
 
 def test_get_book_title_missing_verse_file() -> None:
@@ -49,6 +51,7 @@ def test_is_single_chapter_book_handles_missing_book_file() -> None:
         bible_module.BIBLES.pop(version, None)
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_number_of_chapters_fallback_on_missing_book_file() -> None:
     # Arrange: pick a known book
     refs = bible.get_references("Genesis")

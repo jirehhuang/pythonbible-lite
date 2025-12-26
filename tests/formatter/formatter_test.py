@@ -6,6 +6,7 @@ import pytest
 
 import pythonbible as bible
 import pythonbible.bible.errors
+from tests.conftest import BIBLE_DEACTIVATED_MSG
 
 
 def test_format_scripture_references(
@@ -43,6 +44,7 @@ def test_format_scripture_references_sorting(
     assert reference == formatted_reference
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_format_scripture_reference_single_verse(verse_id: int) -> None:
     # Given a single verse id
     book: bible.Book
@@ -75,6 +77,7 @@ def test_format_scripture_reference_single_verse(verse_id: int) -> None:
     assert long_kjv_reference != long_asv_reference
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_format_scripture_text(verse_ids: list[int], html_scripture_text: str) -> None:
     # Given a list of verse ids
     # When we get the scripture text for those verse ids
@@ -87,6 +90,7 @@ def test_format_scripture_text(verse_ids: list[int], html_scripture_text: str) -
     assert scripture_text == html_scripture_text
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_format_scripture_text_non_html(
     verse_ids: list[int],
     non_html_scripture_text: str,
@@ -103,6 +107,7 @@ def test_format_scripture_text_non_html(
     assert scripture_text == non_html_scripture_text
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_format_scripture_text_one_verse_per_paragraph(
     verse_ids_multiple_chapters: list[int],
     html_scripture_text_one_verse_per_paragraph: str,
@@ -119,6 +124,7 @@ def test_format_scripture_text_one_verse_per_paragraph(
     assert scripture_text == html_scripture_text_one_verse_per_paragraph
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_format_scripture_text_non_html_no_verse_numbers(
     verse_ids: list[int],
     non_html_scripture_text_readers: str,
@@ -136,6 +142,7 @@ def test_format_scripture_text_non_html_no_verse_numbers(
     assert scripture_text == non_html_scripture_text_readers
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_format_scripture_text_non_html_one_verse_per_paragraph(
     verse_ids: list[int],
     non_html_scripture_text_one_verse_per_paragraph: str,
@@ -153,6 +160,7 @@ def test_format_scripture_text_non_html_one_verse_per_paragraph(
     assert scripture_text == non_html_scripture_text_one_verse_per_paragraph
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_verse_text(verse_id: int, verse_text_no_verse_number: str) -> None:
     # Given a valid verse id
     # When using that verse to get the verse text
@@ -165,6 +173,7 @@ def test_get_verse_text(verse_id: int, verse_text_no_verse_number: str) -> None:
     assert verse_text == verse_text_no_verse_number
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_verse_text_invalid(invalid_verse_id: int) -> None:
     # Given an invalid verse id
     # When attempting to get the verse text for that verse id
@@ -173,6 +182,7 @@ def test_get_verse_text_invalid(invalid_verse_id: int) -> None:
         bible.get_verse_text(invalid_verse_id)
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_verse_text_no_version_file(verse_id: int) -> None:
     # Given a valid verse id and a version that doesn't have a file
     version: bible.Version = bible.Version.MESSAGE
@@ -195,6 +205,7 @@ def test_get_verse_text_verse_omitted_from_version() -> None:
     assert not verse_text
 
 
+@pytest.mark.xfail(reason=BIBLE_DEACTIVATED_MSG, strict=True)
 def test_get_verse_text_version_not_include_book() -> None:
     # Given a valid verse id for a verse in a book not included in the given version
     version: bible.Version = bible.Version.AMERICAN_STANDARD
