@@ -7,4 +7,5 @@ with the
 [`bible`](https://github.com/avendesora/pythonbible/tree/2da3ee53ce144f43f67bc01b8b97ec23e234a127/pythonbible/bible)
 module deprecated and the
 [`version`](https://github.com/avendesora/pythonbible/tree/2da3ee53ce144f43f67bc01b8b97ec23e234a127/pythonbible/bible/versions)
-directory removed.
+directory removed. Additionally, the verse counts have been updated to align
+with the King James Version.
