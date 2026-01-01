@@ -1,5 +1,11 @@
 # `pythonbible` Lite
 
+The updates made in this repository were resolved as of `pythonbible`
+[v0.15.1](https://github.com/avendesora/pythonbible/releases/tag/v0.15.1)
+(see [issue](https://github.com/avendesora/pythonbible/issues/223)).
+
+---
+
 This repository contains a lite version of
 [`pythonbible`](https://github.com/avendesora/pythonbible)
 ([`2da3ee5`](https://github.com/avendesora/pythonbible/tree/2da3ee53ce144f43f67bc01b8b97ec23e234a127))
