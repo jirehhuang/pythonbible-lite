@@ -10,4 +10,4 @@ module deprecated and the
 directory removed. Additionally, the verse counts have been updated to align
 with the King James Version.
 
-> **Note:** This repository is now archived. The updates made here have been incorporated into `pythonbible` as of [v0.15.1](https://github.com/avendesora/pythonbible/releases/tag/v0.15.1) ([issue #223](https://github.com/avendesora/pythonbible/issues/223)). Tests from [#7](https://github.com/jirehhuang/pythonbible-lite/pull/7) and [#9](https://github.com/jirehhuang/pythonbible-lite/pull/9) have been verified in [this fork branch](https://github.com/jirehhuang/pythonbible/tree/confirm-pythonbible-lite-tests-pass).
+> **Note:** This repository is now archived. The updates made here were resolved as of `pythonbible` [v0.15.1](https://github.com/avendesora/pythonbible/releases/tag/v0.15.1) ([issue #223](https://github.com/avendesora/pythonbible/issues/223)). Tests from [#7](https://github.com/jirehhuang/pythonbible-lite/pull/7) and [#9](https://github.com/jirehhuang/pythonbible-lite/pull/9) have been verified in [this fork branch](https://github.com/jirehhuang/pythonbible/tree/confirm-pythonbible-lite-tests-pass).
